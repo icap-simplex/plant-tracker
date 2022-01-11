@@ -2,14 +2,16 @@
 
 namespace App\Models\Traits\Image;
 
+use Illuminate\Database\Eloquent\Relations\MorphTo;
+
 trait HasImageRelations
 {
     /**
      * Get the parent imageable model
      *
-     * @return mixed
+     * @return MorphTo
      */
-    public function imageable()
+    public function imageable(): MorphTo
     {
         return $this->morphTo();
     }
