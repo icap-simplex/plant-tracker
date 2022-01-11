@@ -35,25 +35,27 @@ class PlantRepository extends BaseRepository implements Factory
 
         $files = $request->allFiles();
 
-        foreach ($files as $file) {
-            $extension = $file->getClientOriginalExtension();
+        foreach ($files as $fileArray) {
+            foreach ($fileArray as $file) {
+                $extension = $file->getClientOriginalExtension();
 
-            $check = in_array($extension, $allowedfileExtension);
+                $check = in_array($extension, $allowedfileExtension);
 
-            if (!$check) {
-                continue;
+                if (!$check) {
+                    continue;
+                }
+
+                $name = $file->getClientOriginalName();
+                $type = 'image/' . $extension;
+                $path = $file->storeAs('public/plants/photos', $name, 'local');
+
+                $plant->images()->save(
+                    new Image([
+                        'type' => $type,
+                        'path' => str_replace('public', 'storage', $path),
+                    ])
+                );
             }
-
-            $name = $file->getClientOriginalName();
-            $type = 'image/' . $extension;
-            $path = $file->storeAs('public/plants/photos', $name, 'local');
-
-            $plant->images()->save(
-                new Image([
-                    'type' => $type,
-                    'path' => str_replace('public', 'storage', $path),
-                ])
-            );
         }
     }
 }
