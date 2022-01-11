@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SavePlantRequest;
 use App\Http\Resources\PlantResource;
 use App\Models\Plant;
 use App\Repository\Contracts\Plant\Factory as PlantService;
-use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class PlantsController extends Controller
@@ -37,11 +37,15 @@ class PlantsController extends Controller
     /**
      * Store a newly created plant
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param SavePlantRequest $request
+     * @return PlantResource
      */
-    public function store(Request $request)
+    public function store(SavePlantRequest $request): PlantResource
     {
-        //
+        $plant = $this->plantRepository->create($request->all());
+
+        $this->plantRepository->uploadImages($plant, $request);
+
+        return new PlantResource($plant);
     }
 }

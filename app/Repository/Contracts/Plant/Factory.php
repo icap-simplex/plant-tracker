@@ -2,7 +2,9 @@
 
 namespace App\Repository\Contracts\Plant;
 
+use App\Models\Plant;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
 interface Factory
@@ -18,7 +20,16 @@ interface Factory
      * Create plant
      *
      * @param array $attr
-     * @return Model
+     * @return Model|Plant
      */
     public function create(array $attr): Model;
+
+    /**
+     * Upload multiple images
+     *
+     * @param Plant $plant
+     * @param Request $request
+     * @return void
+     */
+    public function uploadImages(Plant $plant, Request $request): void;
 }
