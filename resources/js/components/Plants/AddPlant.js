@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, withRouter } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 class AddPlant extends React.Component {
     constructor(props) {
@@ -30,9 +31,10 @@ class AddPlant extends React.Component {
         axios.post(url, formData)
             .then(function (response) {
                 this.props.history.push('/');
+                toast.success('You have successfully added a new plant.');
             }.bind(this))
             .catch(function(error) {
-
+                toast.error(error.response.data.message);
             }.bind(this))
     }
 

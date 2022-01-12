@@ -8,6 +8,8 @@ import {
 import MainNav from './Shared/MainNav';
 import PlantList from './Plants/List';
 import AddPlant from "./Plants/AddPlant";
+import { ToastContainer  } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export default class Main extends React.Component {
@@ -36,6 +38,7 @@ export default class Main extends React.Component {
                         </Route>
                     </Switch>
                 </Router>
+                <ToastContainer />
             </div>
         );
     }
