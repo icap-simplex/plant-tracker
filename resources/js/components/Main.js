@@ -25,8 +25,8 @@ export default class Main extends React.Component {
     render() {
         return (
             <div>
-                <MainNav />
                 <Router>
+                    <MainNav />
                     <Routes>
                         <Route exact path="/" element={<PlantList />} />
                         <Route path="/add-plant" element={<AddPlant />} />
