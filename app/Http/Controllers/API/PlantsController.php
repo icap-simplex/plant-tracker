@@ -5,7 +5,6 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SavePlantRequest;
 use App\Http\Resources\PlantResource;
-use App\Models\Plant;
 use App\Repository\Contracts\Plant\Factory as PlantService;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
