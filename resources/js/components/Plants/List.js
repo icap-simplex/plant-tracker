@@ -1,5 +1,6 @@
 import React from 'react';
 import ListItem from './ListItem';
+import { Link } from 'react-router-dom';
 
 export default class List extends React.Component {
     constructor(props) {
@@ -30,7 +31,7 @@ export default class List extends React.Component {
             return (
                 <tbody className="bg-white">
                     <tr>
-                        <td colSpan={5}>
+                        <td colSpan={5} className="text-center py-5">
                             No records found.
                         </td>
                     </tr>
@@ -54,9 +55,15 @@ export default class List extends React.Component {
     render() {
         return (
             <div className="flex flex-col mt-8 px-5">
-                <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate mb-3">
+                <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
                     List of Plants
                 </h2>
+                <div className="text-right mb-3">
+                    <Link to="/add-plant"
+                          className="bg-emerald-500 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded">
+                        New Plant
+                    </Link>
+                </div>
                 <div className="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
                     <div
                         className="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
