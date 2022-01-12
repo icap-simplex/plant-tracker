@@ -8,29 +8,31 @@ export default class AddPlant extends React.Component {
 
     render() {
         return (
-            <div className="max-w-sm rounded overflow-hidden shadow-lg p-5 mx-auto mt-5">
-                <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:truncate mb-8 text-center">
+            <div className="max-w-2xl rounded overflow-hidden shadow-lg p-5 mx-auto mt-5">
+                <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:truncate mb-10 text-left">
                     New Plant
                 </h2>
-                <form className="lg:w-full max-w-lg">
-                    <div className="flex flex-wrap -mx-3 mb-6">
-                        <div className="w-full px-3">
-                            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                                Name
-                            </label>
-                            <input
-                                className="appearance-none block w-full bg-gray-50 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                type="text" />
+                <form className="lg:w-full max-w-2xl">
+                    <div className="flex flex-wrap -mx-3 mb-6 grid grid-cols-2 gap-4">
+                        <div className="col-span-1">
+                            <div className="w-full px-3">
+                                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                                    Name
+                                </label>
+                                <input
+                                    className="appearance-none block w-full bg-gray-50 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                    type="text" />
+                            </div>
                         </div>
-                    </div>
-                    <div className="flex flex-wrap -mx-3 mb-6">
-                        <div className="w-full px-3">
-                            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                                Species
-                            </label>
-                            <input
-                                className="appearance-none block w-full bg-gray-50 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                type="text" />
+                        <div className="col-span-1">
+                            <div className="w-full px-3">
+                                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                                    Species
+                                </label>
+                                <input
+                                    className="appearance-none block w-full bg-gray-50 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                    type="text" />
+                            </div>
                         </div>
                     </div>
                     <div className="flex flex-wrap -mx-3 mb-6">
