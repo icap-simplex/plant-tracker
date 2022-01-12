@@ -4,12 +4,56 @@ import ListItem from './ListItem';
 export default class List extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            plants: [],
+        };
+
+        this.getPlants();
+    }
+
+    getPlants() {
+        const url = '/api/v1/plants';
+
+        axios.get(url)
+            .then(function(response) {
+                const { data } = response.data;
+
+                this.setState({
+                    plants: data
+                });
+            }.bind(this))
+            .catch(function(error) {});
+    }
+
+    listItems() {
+        if (this.state.plants.length === 0) {
+            return (
+                <tbody className="bg-white">
+                    <tr>
+                        <td colSpan={5}>
+                            No records found.
+                        </td>
+                    </tr>
+                </tbody>
+            );
+        }
+
+        const itemDisplay = (plant) => {
+            return (
+                <ListItem plant={plant} key={plant.id} />
+            );
+        };
+
+        return (
+            <tbody className="bg-white">
+                {this.state.plants.map(itemDisplay)}
+            </tbody>
+        );
     }
 
     render() {
         return (
-            <div className="flex flex-col mt-8 mx-5">
+            <div className="flex flex-col mt-8 px-5">
                 <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate mb-3">
                     List of Plants
                 </h2>
@@ -41,9 +85,7 @@ export default class List extends React.Component {
                                 </th>
                             </tr>
                             </thead>
-                            <tbody className="bg-white">
-                                <ListItem />
-                            </tbody>
+                            {this.listItems()}
                         </table>
                     </div>
                 </div>

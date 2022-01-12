@@ -2260,15 +2260,57 @@ var List = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, List);
 
     _this = _super.call(this, props);
-    _this.state = {};
+    _this.state = {
+      plants: []
+    };
+
+    _this.getPlants();
+
     return _this;
   }
 
   _createClass(List, [{
+    key: "getPlants",
+    value: function getPlants() {
+      var url = '/api/v1/plants';
+      axios.get(url).then(function (response) {
+        var data = response.data.data;
+        this.setState({
+          plants: data
+        });
+      }.bind(this))["catch"](function (error) {});
+    }
+  }, {
+    key: "listItems",
+    value: function listItems() {
+      if (this.state.plants.length === 0) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("tbody", {
+          className: "bg-white",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("tr", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+              colSpan: 5,
+              children: "No records found."
+            })
+          })
+        });
+      }
+
+      var itemDisplay = function itemDisplay(plant) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ListItem__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          plant: plant
+        }, plant.id);
+      };
+
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("tbody", {
+        className: "bg-white",
+        children: this.state.plants.map(itemDisplay)
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-        className: "flex flex-col mt-8 mx-5",
+        className: "flex flex-col mt-8 px-5",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h2", {
           className: "text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate mb-3",
           children: "List of Plants"
@@ -2297,10 +2339,7 @@ var List = /*#__PURE__*/function (_React$Component) {
                     children: "Watering Instructions"
                   })]
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("tbody", {
-                className: "bg-white",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ListItem__WEBPACK_IMPORTED_MODULE_1__["default"], {})
-              })]
+              }), this.listItems()]
             })
           })
         })]
@@ -2366,10 +2405,33 @@ var ListItem = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {};
+    console.log(props);
     return _this;
   }
 
   _createClass(ListItem, [{
+    key: "displayPhoto",
+    value: function displayPhoto() {
+      var plant = this.props.plant;
+      var url = 'https://via.placeholder.com/150/000000/FFFFFF/?text=No Photo';
+
+      if (plant.photos.length > 0) {
+        url = plant.photos[0].url;
+      }
+
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        className: "flex items-center",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          className: "flex-shrink-0 w-20 h-20",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+            className: "w-20 h-20",
+            src: url,
+            alt: plant.name
+          })
+        })
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
@@ -2377,36 +2439,26 @@ var ListItem = /*#__PURE__*/function (_React$Component) {
           className: "px-6 py-4 whitespace-no-wrap border-b border-gray-200",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
             className: "text-sm leading-5 text-gray-500",
-            children: "1"
+            children: this.props.plant.id
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
           className: "px-6 py-4 whitespace-no-wrap border-b border-gray-200",
+          children: this.displayPhoto()
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+          className: "px-6 py-4 whitespace-no-wrap border-b border-gray-200",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-            className: "flex items-center",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-              className: "flex-shrink-0 w-20 h-20",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-                className: "w-20 h-20",
-                src: "https://source.unsplash.com/user/erondu",
-                alt: "admin dashboard ui"
-              })
-            })
+            className: "text-sm leading-5 text-gray-500",
+            children: this.props.plant.name
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
           className: "px-6 py-4 whitespace-no-wrap border-b border-gray-200",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
             className: "text-sm leading-5 text-gray-500",
-            children: "Plant name here"
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
-          className: "px-6 py-4 whitespace-no-wrap border-b border-gray-200",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-            className: "text-sm leading-5 text-gray-500",
-            children: "Species here"
+            children: this.props.plant.species
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
           className: "px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200",
-          children: "Lorem ipsum dolor set amet."
+          children: this.props.plant.watering_instructions
         })]
       });
     }
