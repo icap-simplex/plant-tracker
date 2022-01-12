@@ -51,3 +51,9 @@ npm run watch
 ``` 
 npm run prod
 ```
+###
+
+If you encounter errors during form submission, make sure the following directory exists and is writable.
+``` 
+[project root]/storage/app/public/plants/photos
+```
