@@ -47,9 +47,9 @@ class PlantsController extends Controller
      * Store a newly created plant
      *
      * @param SavePlantRequest $request
-     * @return PlantResource
+     * @return mixed
      */
-    public function store(SavePlantRequest $request): PlantResource
+    public function store(SavePlantRequest $request)
     {
         $plant = $this->plantRepository->create($request->all());
 
