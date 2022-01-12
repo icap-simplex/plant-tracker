@@ -27,6 +27,6 @@
     },
     "dependencies": {
         "query-string": "^7.1.0",
-        "react-router-dom": "^6.2.1"
+        "react-router-dom": "^5.2.0"
     }
 }

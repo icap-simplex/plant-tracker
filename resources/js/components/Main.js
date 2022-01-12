@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {
     BrowserRouter as Router,
-    Routes,
+    Switch,
     Route
 } from "react-router-dom";
 import MainNav from './Shared/MainNav';
@@ -27,10 +27,14 @@ export default class Main extends React.Component {
             <div>
                 <Router>
                     <MainNav />
-                    <Routes>
-                        <Route exact path="/" element={<PlantList />} />
-                        <Route path="/add-plant" element={<AddPlant />} />
-                    </Routes>
+                    <Switch>
+                        <Route exact path="/">
+                            <PlantList />
+                        </Route>
+                        <Route path="/add-plant">
+                            <AddPlant />
+                        </Route>
+                    </Switch>
                 </Router>
             </div>
         );
