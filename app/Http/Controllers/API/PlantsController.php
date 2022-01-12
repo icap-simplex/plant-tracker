@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\SavePlantRequest;
 use App\Http\Resources\PlantResource;
 use App\Repository\Contracts\Plant\Factory as PlantService;
+use App\Services\Output\Contracts\OutputService;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class PlantsController extends Controller
@@ -16,21 +17,30 @@ class PlantsController extends Controller
     protected $plantRepository;
 
     /**
-     * @param PlantService $plantRepository
+     * @var OutputService
      */
-    public function __construct(PlantService $plantRepository)
+    protected $outputService;
+
+    /**
+     * @param PlantService $plantRepository
+     * @param OutputService $outputService
+     */
+    public function __construct(PlantService $plantRepository, OutputService $outputService)
     {
         $this->plantRepository = $plantRepository;
+        $this->outputService = $outputService;
     }
 
     /**
      * Get all plants
      *
-     * @return AnonymousResourceCollection
+     * @return mixed
      */
-    public function index(): AnonymousResourceCollection
+    public function index()
     {
-        return PlantResource::collection($this->plantRepository->all());
+        return $this->outputService->respond(
+            PlantResource::collection($this->plantRepository->all())
+        );
     }
 
     /**
@@ -45,6 +55,6 @@ class PlantsController extends Controller
 
         $this->plantRepository->uploadImages($plant, $request);
 
-        return new PlantResource($plant);
+        return $this->outputService->respond(new PlantResource($plant));
     }
 }
