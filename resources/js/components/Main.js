@@ -24,7 +24,9 @@ export default class Main extends React.Component {
             <div>
                 <Router>
                     <div className="container">
-                        Home
+                        <h1 className="text-3xl font-bold underline">
+                            Home
+                        </h1>
                     </div>
                 </Router>
             </div>
