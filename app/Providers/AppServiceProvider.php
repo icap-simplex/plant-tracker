@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Services\Output\Contracts\OutputService;
+use App\Services\Output\JsonOutput;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(OutputService::class, JsonOutput::class);
     }
 
     /**
