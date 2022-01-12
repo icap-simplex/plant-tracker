@@ -2405,7 +2405,6 @@ var ListItem = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {};
-    console.log(props);
     return _this;
   }
 
