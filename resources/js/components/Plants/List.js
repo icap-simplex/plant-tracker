@@ -1,6 +1,7 @@
 import React from 'react';
 import ListItem from './ListItem';
 import { Link } from 'react-router-dom';
+import PlantRequest from "../Api/PlantRequest";
 
 export default class List extends React.Component {
     constructor(props) {
@@ -13,17 +14,13 @@ export default class List extends React.Component {
     }
 
     getPlants() {
-        const url = '/api/v1/plants';
+        PlantRequest.getAll((response) => {
+            const { data } = response.data;
 
-        axios.get(url)
-            .then(function(response) {
-                const { data } = response.data;
-
-                this.setState({
-                    plants: data
-                });
-            }.bind(this))
-            .catch(function(error) {});
+            this.setState({
+                plants: data
+            });
+        });
     }
 
     listItems() {
