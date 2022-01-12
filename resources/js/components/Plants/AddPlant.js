@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 
 export default class AddPlant extends React.Component {
     constructor(props) {
@@ -64,6 +65,18 @@ export default class AddPlant extends React.Component {
                                 </div>
                                 <div className="text-gray-400 text-center"><span>Accepted file type: png, jpg and gif only</span></div>
                             </div>
+                        </div>
+                    </div>
+                    <div className="flex flex-wrap -mx-3 mb-6">
+                        <div className="w-full text-left px-3">
+                            <button
+                                className="bg-emerald-500 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded">
+                                Save Plant
+                            </button>
+                            <Link to="/"
+                                  className="text-gray-400 hover:underline font-normal py-2 px-4 ml-1">
+                                Cancel
+                            </Link>
                         </div>
                     </div>
                 </form>

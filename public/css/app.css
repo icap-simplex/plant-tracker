@@ -542,6 +542,15 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mb-10 {
   margin-bottom: 2.5rem;
 }
+.ml-3 {
+  margin-left: 0.75rem;
+}
+.ml-2 {
+  margin-left: 0.5rem;
+}
+.ml-1 {
+  margin-left: 0.25rem;
+}
 .block {
   display: block;
 }
@@ -979,6 +988,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .hover\:text-teal-500:hover {
   --tw-text-opacity: 1;
   color: rgb(20 184 166 / var(--tw-text-opacity));
+}
+.hover\:underline:hover {
+  -webkit-text-decoration-line: underline;
+          text-decoration-line: underline;
 }
 .focus\:border-gray-500:focus {
   --tw-border-opacity: 1;
