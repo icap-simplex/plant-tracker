@@ -7,7 +7,6 @@ use App\Http\Requests\SavePlantRequest;
 use App\Http\Resources\PlantResource;
 use App\Repository\Contracts\Plant\Factory as PlantService;
 use App\Services\Output\Contracts\OutputService;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class PlantsController extends Controller
 {
@@ -47,9 +46,9 @@ class PlantsController extends Controller
      * Store a newly created plant
      *
      * @param SavePlantRequest $request
-     * @return PlantResource
+     * @return mixed
      */
-    public function store(SavePlantRequest $request): PlantResource
+    public function store(SavePlantRequest $request)
     {
         $plant = $this->plantRepository->create($request->all());
 
