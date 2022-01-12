@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, withRouter } from "react-router-dom";
 import { toast } from 'react-toastify';
+import PlantRequest from "../Api/PlantRequest";
 
 class AddPlant extends React.Component {
     constructor(props) {
@@ -26,16 +27,10 @@ class AddPlant extends React.Component {
         formData.append('watering_instructions', this.state.wateringInstructions);
         formData.append('files[]', this.state.photo);
 
-        const url = '/api/v1/plants';
-
-        axios.post(url, formData)
-            .then(function (response) {
-                this.props.history.push('/');
-                toast.success('You have successfully added a new plant.');
-            }.bind(this))
-            .catch(function(error) {
-                toast.error(error.response.data.message);
-            }.bind(this))
+        PlantRequest.addPlant(formData, (response) => {
+            this.props.history.push('/');
+            toast.success('You have successfully added a new plant.');
+        });
     }
 
     handleInputChange(event) {
