@@ -7,7 +7,6 @@ use App\Http\Requests\SavePlantRequest;
 use App\Http\Resources\PlantResource;
 use App\Repository\Contracts\Plant\Factory as PlantService;
 use App\Services\Output\Contracts\OutputService;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class PlantsController extends Controller
 {
