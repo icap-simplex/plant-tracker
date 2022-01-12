@@ -6,6 +6,7 @@ import {
     Route
 } from "react-router-dom";
 import MainNav from './Shared/MainNav';
+import PlantList from './Plants/List';
 
 
 export default class Main extends React.Component {
@@ -24,6 +25,11 @@ export default class Main extends React.Component {
         return (
             <div>
                 <MainNav />
+                <Router>
+                    <Routes>
+                        <Route exact path="/" element={<PlantList />} />
+                    </Routes>
+                </Router>
             </div>
         );
     }
