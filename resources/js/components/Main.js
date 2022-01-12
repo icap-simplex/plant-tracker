@@ -5,6 +5,7 @@ import {
     Routes,
     Route
 } from "react-router-dom";
+import MainNav from './Shared/MainNav';
 
 
 export default class Main extends React.Component {
@@ -22,13 +23,7 @@ export default class Main extends React.Component {
     render() {
         return (
             <div>
-                <Router>
-                    <div className="container">
-                        <h1 className="text-3xl font-bold underline">
-                            Home
-                        </h1>
-                    </div>
-                </Router>
+                <MainNav />
             </div>
         );
     }
