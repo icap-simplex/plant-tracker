@@ -30,7 +30,7 @@ export default class List extends React.Component {
             return (
                 <tbody className="bg-white">
                     <tr>
-                        <td colSpan={5}>
+                        <td colSpan={5} className="text-center py-5">
                             No records found.
                         </td>
                     </tr>

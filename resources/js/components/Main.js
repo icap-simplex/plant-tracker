@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import MainNav from './Shared/MainNav';
 import PlantList from './Plants/List';
+import AddPlant from "./Plants/AddPlant";
 
 
 export default class Main extends React.Component {
@@ -28,6 +29,7 @@ export default class Main extends React.Component {
                 <Router>
                     <Routes>
                         <Route exact path="/" element={<PlantList />} />
+                        <Route path="/add-plant" element={<AddPlant />} />
                     </Routes>
                 </Router>
             </div>
